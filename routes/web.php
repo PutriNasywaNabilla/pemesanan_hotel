@@ -4,9 +4,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\KamarController;
+use App\Http\Controllers\Harga_Hari_IniController;
+
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.app');
 });
 
 // Route::get('/pengguna/{user_id}',[UserController::class,'tampilData']);
@@ -15,5 +18,8 @@ Route::get('/', function () {
 
 Route::resource('/pengguna',\App\Http\Controllers\UserController::class);
 Route::resource('/customers',\App\Http\Controllers\CustomersController::class);
-Route::get('/customers/create', [CustomersController::class, 'create'])->name('customers.create');
+Route::resource('/kamar',\App\Http\Controllers\KamarController::class);
+Route::resource('/harga_hari_ini',\App\Http\Controllers\Harga_Hari_IniController::class);
+
+
 

@@ -1,33 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tampil Customers</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body style="background: white">
+@extends('dashboard.app')
+@section ('content')
+<div class="section-header">
+    <h1>Detail Data Pengguna</h1>
+    <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+        <div class="breadcrumb-item"><a href="#">Layout</a></div>
+        <div class="breadcrumb-item active">Defaul Layout</div>
+    </div>
+</div>
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div>
-                    <h3 class="text-center my-4">Data Customers</h3>
-                    <hr>
-                </div>
-                <div class="card border-0 shadow-sm rounded">
-                    <div class="card-body">
+<div class="section-body">
                         <div class="card-body">
-                            <h3>{{ $customers->NIK }}</h3>
-                            <p>{{ $customers->nama_customer }}</p>
-                            <p>{{ $customers->email }}</p>
-                            <p>{{ $customers->country }}</p>
+                            <h3 class="card-title">{{$customers->NIK }}</h3>
+                            <p class="card-text">{{$customers->email}}</p>
+                            <p class="card-text">{{ $customers->nama_customer }}</p>
+                            <p class="card-text">{{ $customers->country }}</p>
+            <a href="{{ route('pengguna.index') }}" class="btn btn-primary">Kembali</a>
+
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+@endsection

@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kamar', function (Blueprint $table) {
-            $table->id()->unsigned();
-            $table->string('nama_kamar', 100)->nullable();
-            $table->enum('jenis_kamar', ['deluxe', 'superior', 'president'])->nullable();
-            $table->integer('ukuran_kamar')->nullable();
-            $table->integer('harga')->nullable();
+            $table->id('id_kamar')->unique();
+            $table->string('nama_kamar', 100)->notnullable();
+            $table->enum('jenis_kamar', ['deluxe', 'superior', 'president'])->notnullable();
+            $table->integer('ukuran_kamar')->notnullable();
+            $table->integer('harga')->notnullable();
             $table->timestamps();
         });
     }

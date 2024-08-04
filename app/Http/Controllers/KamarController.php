@@ -27,14 +27,14 @@ class KamarController extends Controller
         //validate form
         $request->validate([
             'nama_kamar'    => 'required|min:5|unique:kamar,nama_kamar',
-            'jenis_kamar'         => 'required',
-            'ukuran_kamar'  => 'required|min:5|unique:kamar,ukuran_kamar',
-            'harga'         =>'required|min:5'
+            'jenis_kamar'   => 'required',
+            'ukuran_kamar'  => 'required|min:1',
+            'harga'         => 'required|min:5'
         ]);
 
         Kamar::create([
             'nama_kamar'        => $request->nama_kamar,
-            'jenis_kamar'             => $request->jenis_kamar,
+            'jenis_kamar'       => $request->jenis_kamar,
             'ukuran_kamar'      => $request->ukuran_kamar,
             'harga'             => $request->harga,
         ]);
@@ -44,8 +44,8 @@ class KamarController extends Controller
 
     public function edit(string $id): View
     {
-        $kamar = Kamar::findOrFail($id);
-        return view('kamar.edit', compact('kamar'));
+        $data_kamar = Kamar::findOrFail($id);
+        return view('kamar.edit', compact('data_kamar'));
     }
 
     public function show(string $id): View
@@ -60,13 +60,13 @@ class KamarController extends Controller
         //validate form
         // $request->validate([
         //     'nama_kamar'    => 'required|min:5|unique:kamar,nama_kamar',
-        //     'jenis_kamar'         => 'required',
-        //     'ukuran_kamar'  => 'required|min:5|unique:kamar,ukuran_kamar',
+        //     'jenis_kamar'   => 'required',
+        //     'ukuran_kamar'  => 'required|min:1',
         //     'harga'         =>'required|min:5'
         // ]);
 
-        $kamar = Kamar::findOrFail($id);
-        $kamar->update([
+        $data_kamar = Kamar::findOrFail($id);
+        $data_kamar->update([
             'nama_kamar'        => $request->nama_kamar,
             'jenis_kamar'       => $request->jenis_kamar,
             'ukuran_kamar'      => $request->ukuran_kamar,

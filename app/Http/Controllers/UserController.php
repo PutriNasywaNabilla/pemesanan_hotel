@@ -36,13 +36,17 @@ class UserController extends Controller
         $request->validate([
             'name'          => 'required|min:5|unique:users,name',
             'email'         => 'required|min:5|unique:users,email|email',
-            'password'      => 'required|min:5'
+            'password'      => 'required|min:5',
+            'level'         => 'required|'
+
         ]);
 
         User::create([
             'name'              => $request->name,
             'email'             => $request->email,
-            'password'          => bcrypt($request->password)
+            'password'          => bcrypt($request->password),
+            'level'             => $request->level,
+
         ]);
         //redirect to index
         return redirect()->route('pengguna.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -68,14 +72,16 @@ class UserController extends Controller
         $request->validate([
             'name'          => 'required|min:5',
             'email'         => 'required|min:5',
-            'password'      => 'required|min:5'
+            'password'      => 'required|min:5',
+            'level'         => 'required|',
         ]);
 
         $pengguna = User::findOrFail($id);
         $pengguna->update([
                 'name'      => $request->name,
                 'email'     => $request->email,
-                'password'  => md5($request->password)
+                'password'  => md5($request->password),
+                'level'     => $request->level,
             ]);
 
         return redirect()->route('pengguna.index')->with(['success' => 'Data Berhasil Diubah!']);

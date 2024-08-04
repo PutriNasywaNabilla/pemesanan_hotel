@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->string('NIK', 16)->unique()->nullable();
-            $table->string('nama_customer', 150)->nullable();
-            $table->string('email', 50)->nullable();
-            $table->string('country', 10)->nullable();
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('users');
+            $table->string('NIK', 16)->primary()->notnullable();
+            $table->string('nama_customer', 150)->notnullable();
+            $table->string('country', 10)->notnullable();
             $table->timestamps();
         });
     }
